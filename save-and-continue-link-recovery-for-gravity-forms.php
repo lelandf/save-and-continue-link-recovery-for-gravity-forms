@@ -55,7 +55,7 @@ function lelandf_save_and_continue_link_recovery_admin() {
 	// Grab incomplete submissions
 	$incomplete_submissions = $wpdb->get_results(
 		"
-		SELECT uuid, source_url, form_id, date_created, ip
+		SELECT form_id, date_created, email, ip, uuid, source_url
 		FROM $table_name
 		"
 	);
@@ -69,7 +69,8 @@ function lelandf_save_and_continue_link_recovery_admin() {
 	<table class="widefat">
 		<tr>
 			<th><?php esc_html_e( 'Form ID', 'save-and-continue-link-recovery' ); ?></th>
-			<th><?php esc_html_e( 'Time Created', 'save-and-continue-link-recovery' ); ?></th>
+			<th><?php esc_html_e( 'Date/Time Created', 'save-and-continue-link-recovery' ); ?></th>
+			<th><?php esc_html_e( 'Email Address', 'save-and-continue-link-recovery' ); ?></th>
 			<th><?php esc_html_e( 'IP Address', 'save-and-continue-link-recovery' ); ?></th>
 			<th><?php esc_html_e( 'UUID', 'save-and-continue-link-recovery' ); ?></th>
 			<th><?php esc_html_e( 'Save and Continue Link', 'save-and-continue-link-recovery' ); ?></th>
@@ -80,6 +81,7 @@ function lelandf_save_and_continue_link_recovery_admin() {
 				echo '<tr>';
 					echo '<td>' . esc_html( $incomplete_submission->form_id ) . '</td>';
 					echo '<td>' . esc_html( $incomplete_submission->date_created ) . '</td>';
+					echo '<td>' . esc_html( $incomplete_submission->email ) . '</td>';
 					echo '<td>' . esc_html( $incomplete_submission->ip ) . '</td>';
 					echo '<td>' . esc_html( $incomplete_submission->uuid ) . '</td>';
 					echo '<td><a href="' . trailingslashit( esc_attr( $incomplete_submission->source_url ) ) . '?gf_token=' . esc_attr( $incomplete_submission->uuid ) . '" target="_blank">' . esc_html__( 'View Entry', 'save-and-continue-link-recovery' ) . '</a></td>';
