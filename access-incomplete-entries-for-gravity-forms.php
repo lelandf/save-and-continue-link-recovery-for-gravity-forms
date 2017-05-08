@@ -1,27 +1,46 @@
 <?php
 /*
-Plugin Name: Access Incomplete Entries for Gravity Forms
-Description: If a form submitter loses their "Save and Continue" URL, this will come in handy.
-Version: 0.1
+Plugin Name: Save and Continue Link Recovery for Gravity Forms
+Description: If a Gravity Forms form submitter loses their "Save and Continue" Link, this will help you recover it.
+Version: 1.0.0
 Author: Leland Fiegel
 Author URI: https://leland.me/
-License: GPL2
+Text Domain: save-and-continue-link-recovery
+License: GPLv2 or Later
 License URI: LICENSE
 */
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// Add menu item
-add_action( 'admin_menu', 'access_incomplete_entries_menu' );
-
-// Register menu item
-function access_incomplete_entries_menu() {
-	add_management_page( 'Access Incomplete Entries for Gravity Forms', 'Access Incomplete Entries', 'manage_options', 'access-incomplete-entries', 'access_incomplete_entries_admin' );
+/**
+ * Add menu item
+ */
+function lelandf_save_and_continue_link_recovery_menu() {
+	add_management_page( esc_html__( 'Save and Continue Link Recovery for Gravity Forms', 'save-and-continue-link-recovery' ), esc_html__( 'Save and Continue Link Recovery', 'save-and-continue-link-recovery' ), 'manage_options', 'save-and-continue-link-recovery', 'lelandf_save_and_continue_link_recovery_admin' );
 }
+add_action( 'admin_menu', 'lelandf_save_and_continue_link_recovery_menu' );
 
-// Admin page
-function access_incomplete_entries_admin() {
+function lelandf_save_and_continue_link_recovery_add_action_links( $actions, $plugin_file ) {
+	static $plugin;
+
+	if ( ! isset( $plugin ) ) {
+		$plugin = plugin_basename( __FILE__ );
+	}
+
+	if ( $plugin == $plugin_file ) {
+		$admin_page_link = array( 'admin-page' => '<a href="' . esc_url( admin_url( 'tools.php?page=save-and-continue-link-recovery' ) ) . '">' . esc_html__( 'Link Recovery', 'save-and-continue-link-recovery' ) . '</a>' );
+		$actions = array_merge( $admin_page_link, $actions );
+	}
+
+	return $actions;
+}
+add_filter( 'plugin_action_links', 'lelandf_save_and_continue_link_recovery_add_action_links', 10, 5 );
+
+/**
+ * Add admin page
+ */
+function lelandf_save_and_continue_link_recovery_admin() {
 	// Only admins should be able to access this page
 	if ( ! current_user_can( 'manage_options' ) )  {
 		wp_die( 'You do not have sufficient permissions to access this page.' );
@@ -32,7 +51,7 @@ function access_incomplete_entries_admin() {
 
 	// Make sure we're using the right database prefix
 	$table_name = $wpdb->prefix . 'rg_incomplete_submissions';
-	
+
 	// Grab incomplete submissions
 	$incomplete_submissions = $wpdb->get_results(
 		"
@@ -42,18 +61,18 @@ function access_incomplete_entries_admin() {
 	);
 
 	echo '<div class="wrap">';
-	echo '<h2>Access Incomplete Entries for Gravity Forms</h2>';
-	
+	echo '<h2>' . esc_html__( 'Save and Continue Link Recovery for Gravity Forms', 'save-and-continue-link-recovery' ) . '</h2>';
+
 	if ( $incomplete_submissions ) { ?>
 
-	<p>Below are all the incomplete form submissions. This will come in handy when people lose their tokenized URLs.</p>
-	<table border="1" cellpadding="10">
+	<p><?php esc_html_e( 'Below you can find all the incomplete Gravity Forms form submissions.', 'save-and-continue-link-recovery' ); ?></p>
+	<table class="widefat">
 		<tr>
-			<th>Form ID</th>
-			<th>Date/Time Created</th>
-			<th>IP Address</th>
-			<th>UUID</th>
-			<th>Quick Link</th>
+			<th><?php esc_html_e( 'Form ID', 'save-and-continue-link-recovery' ); ?></th>
+			<th><?php esc_html_e( 'Time Created', 'save-and-continue-link-recovery' ); ?></th>
+			<th><?php esc_html_e( 'IP Address', 'save-and-continue-link-recovery' ); ?></th>
+			<th><?php esc_html_e( 'UUID', 'save-and-continue-link-recovery' ); ?></th>
+			<th><?php esc_html_e( 'Save and Continue Link', 'save-and-continue-link-recovery' ); ?></th>
 		</tr>
 
 		<?php		
@@ -63,7 +82,7 @@ function access_incomplete_entries_admin() {
 					echo '<td>' . esc_html( $incomplete_submission->date_created ) . '</td>';
 					echo '<td>' . esc_html( $incomplete_submission->ip ) . '</td>';
 					echo '<td>' . esc_html( $incomplete_submission->uuid ) . '</td>';
-					echo '<td><a href="' . trailingslashit( esc_attr( $incomplete_submission->source_url ) ) . '?gf_token=' . esc_attr( $incomplete_submission->uuid ) . '" target="_blank">View Entry</a></td>';
+					echo '<td><a href="' . trailingslashit( esc_attr( $incomplete_submission->source_url ) ) . '?gf_token=' . esc_attr( $incomplete_submission->uuid ) . '" target="_blank">' . esc_html__( 'View Entry', 'save-and-continue-link-recovery' ) . '</a></td>';
 				echo '</tr>';
 			}
 		?>
@@ -71,7 +90,7 @@ function access_incomplete_entries_admin() {
 
 	<?php
 	} else {
-		echo '<p>No incomplete submissions found.</p>';
+		echo '<p>' . esc_html__( 'No incomplete submissions found.', 'save-and-continue-link-recovery' ) . '</p>';
 	}
 
 	echo '</div>';
