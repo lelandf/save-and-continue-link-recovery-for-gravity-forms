@@ -19,7 +19,7 @@ If they lose this URL, they may ask you (the site administrator) for assistance.
 
 By default, there is no way to recover this unique URL without going directly to the database and finding it, which can be a tedious process.
 
-Instead, you can install this plugin, which will list all the incomplete submissions in a simple table format. Each row in the table includes the following information about each:
+Instead, you can install this plugin, which will list all the incomplete submissions in a simple table format. Each row in the table includes the following information about each incomplete submission:
 
 * Form ID
 * Date/time created
@@ -28,7 +28,7 @@ Instead, you can install this plugin, which will list all the incomplete submiss
 * UUID (this is the “password” users use to pick up where they left off)
 * A “View Entry” link (this is what you give the form submitter who lost their URL)
 
-This plugin does not provide an admin interface to manipulate incomplete submissions, but you can click the “View Entry” link to edit submissions on the frontend (just like a user returning to finish an incomplete form could).
+This plugin does not provide an admin interface to manipulate incomplete submissions, but you can click the “View Entry” link to edit submissions on the front-end, just like a user returning to finish an incomplete form could.
 
 For more advanced functionality related to incomplete submissions in Gravity Forms, I suggest looking into the [Partial Entries add-on](http://www.gravityforms.com/add-ons/partial-entries/), available to Gravity Forms Developer License holders.
 
