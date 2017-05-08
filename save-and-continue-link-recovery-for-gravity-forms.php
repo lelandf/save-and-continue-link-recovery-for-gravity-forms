@@ -84,7 +84,7 @@ function lelandf_save_and_continue_link_recovery_admin() {
 					echo '<td>' . esc_html( $incomplete_submission->email ) . '</td>';
 					echo '<td>' . esc_html( $incomplete_submission->ip ) . '</td>';
 					echo '<td>' . esc_html( $incomplete_submission->uuid ) . '</td>';
-					echo '<td><a href="' . trailingslashit( esc_attr( $incomplete_submission->source_url ) ) . '?gf_token=' . esc_attr( $incomplete_submission->uuid ) . '" target="_blank">' . esc_html__( 'View Entry', 'save-and-continue-link-recovery' ) . '</a></td>';
+					echo '<td><a href="' . trailingslashit( esc_url( $incomplete_submission->source_url ) ) . '?gf_token=' . esc_attr( $incomplete_submission->uuid ) . '" target="_blank">' . esc_html__( 'View Entry', 'save-and-continue-link-recovery' ) . '</a></td>';
 				echo '</tr>';
 			}
 		?>
