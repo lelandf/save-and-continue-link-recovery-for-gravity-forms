@@ -25,18 +25,20 @@ Instead, you can install this plugin, which will list all the incomplete submiss
 * Date/Time Created
 * Email address (only available if user emailed recovery link to themselves)
 * IP Address
-* UUID (this is the “password”)
+* UUID (this is the “password” users use to pick up where they left off)
 * A “View Entry” link (this is what you give the form submitter who lost their URL)
 
 This plugin does not provide an admin interface to manipulate incomplete submissions, but you can click the “View Entry” link to edit submissions on the frontend (just like a user returning to finish an incomplete form could).
 
-The idea behind this plugin is to just provide a way to recover the “Save and Continue” links without having to search the database directly.
+For more advanced functionality related to incomplete submissions in Gravity Forms, I suggest looking into the [Partial Entries add-on](http://www.gravityforms.com/add-ons/partial-entries/), available to Gravity Forms Developer License holders.
 
-Please note that Gravity Forms is a commercial form plugin, which I am not affiliated with in any way.
+The idea behind this plugin is to provide a very basic way of recovering “Save and Continue” links without having to search the database directly, and nothing more.
+
+Please note that Gravity Forms is a commercial plugin, which I am not affiliated with in any way.
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/stop-signup-spam` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/save-and-continue-link-recovery-for-gravity-forms` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
 3. Find the “Save and Continue Link Recovery” admin page under the “Tools” menu.
 
