@@ -22,9 +22,9 @@ By default, there is no way to recover this unique URL without going directly to
 Instead, you can install this plugin, which will list all the incomplete submissions in a simple table format. Each row in the table includes the following information about each:
 
 * Form ID
-* Date/Time Created
+* Date/time created
 * Email address (only available if user emailed recovery link to themselves)
-* IP Address
+* IP address
 * UUID (this is the “password” users use to pick up where they left off)
 * A “View Entry” link (this is what you give the form submitter who lost their URL)
 
