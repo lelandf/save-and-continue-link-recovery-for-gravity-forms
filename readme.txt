@@ -13,7 +13,7 @@ If a Gravity Forms form submitter loses their "Save and Continue" Link, this wil
 
 Gravity Forms 1.9 introduced a feature called [Save and Continue](https://www.gravityhelp.com/gravity-forms-v1-9-save-continue/) which allows form submitters to save their progress, and continue it later.
 
-When a form submitter saves their work, they are given a unique URL (a password, of sorts) that will allow them to pick up where they left off.
+When a form submitter saves their work, they are given a unique URL (a “password” of sorts) that will allow them to pick up where they left off.
 
 If they lose this URL, they may ask you (the site administrator) for assistance.
 
