@@ -50,7 +50,7 @@ function lelandf_save_and_continue_link_recovery_admin() {
 	global $wpdb;
 
 	// Make sure we're using the right database prefix
-	$table_name = $wpdb->prefix . 'rg_incomplete_submissions';
+	$table_name = $wpdb->prefix . 'gf_draft_submissions';
 
 	// Grab incomplete submissions
 	$incomplete_submissions = $wpdb->get_results(
